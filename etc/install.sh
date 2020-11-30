@@ -35,4 +35,4 @@ chmod 777 /home/s360box/logs/camera-ping-result
 clear
 
 #say goodbye
-echo "All done! Now pull the plug daddy... OwO"
+echo "All done! Now pull the plug daddy... (♥_♥)"
