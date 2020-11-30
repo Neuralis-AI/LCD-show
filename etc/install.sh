@@ -24,10 +24,12 @@ rm mycron
 #touch privates
 touch /home/s360box/logs/internet-check
 echo 1 > /home/s360box/logs/internet-check
+touch /home/s360box/logs/camera-ping-result
 
 #dominate submissive files
 chmod 777 /home/s360box/logs/internet-check
 chmod a+x /home/s360box/logs/health.py
+chmod 777 /home/s360box/logs/camera-ping-result
 
 #clear display
 clear
