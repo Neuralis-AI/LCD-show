@@ -24,6 +24,7 @@ rm mycron
 touch /home/s360box/logs/internet-check
 echo 1 > /home/s360box/logs/internet-check
 touch /home/s360box/logs/camera-ping-result
+echo 1 > /home/s360box/logs/camera-ping-result
 touch /home/s360box/logs/triggerlog.txt
 
 #dominate submissive files
