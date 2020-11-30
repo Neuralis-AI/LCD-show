@@ -23,7 +23,10 @@ pin1.value = False
 
 #trigger
 def trigger():
-    print("trigger called")                                                                                                                                                                                                                      global i2c                                                                                                                                                                                                                                   global mcp                                                                                                                                                                                                                                   global pin1
+    print("trigger called")
+    global i2c
+    global mcp
+    global pin1
     triggercheck = errordocker + errorcamera + errorinternet
     print(triggercheck)
     if  triggercheck != 0:
@@ -80,7 +83,10 @@ while True:
         print("cameraloop " + str(datetime.now()), file=open("triggerlog.txt", "a+"))
         trigger()
     elif "=1" in dvars:
-        errorcamera = 0                                                                                                                                                                                                                              trigger()                                                                                                                                                                                                                                                                                                                                                                                                                                                                             #internetcheck                                                                                                                                                                                                                               print("started internetcheck")
+        errorcamera = 0 
+        trigger()
+        #internetcheck 
+        print("started internetcheck")
     try:
         #eventueel al aanpassen naar https?
         response = requests.get("https://www.google.com")
