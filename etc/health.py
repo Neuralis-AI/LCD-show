@@ -34,15 +34,13 @@ def trigger():
     global pin4
     global pin5
     triggercheck = errordocker + errorcamera + errorinternet
-    if pin4 = True or pin5 = True
+    if pin4.value or pin5.value:
         pin2.value = True
         print("input 2 of 3 getriggered " + str(datetime.now()), file=open("triggerlog.txt", "a+"))
     else:
-        pin2.value = False
-        
+        pin2.value = False  
     if  triggercheck != 0:
         pin1.value = True
-        print("triggerd")
     else:
         pin1.value = False
 
