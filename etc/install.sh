@@ -36,3 +36,4 @@ clear
 
 #say goodbye
 echo "All done! Now pull the plug daddy... (♥_♥)"
+rm -- "$0"
