@@ -33,4 +33,4 @@ chmod a+x /home/s360box/logs/health.py
 clear
 
 #say goodbye
-print("All done! Now pull the plug daddy... OwO")
+echo "All done! Now pull the plug daddy... OwO"
