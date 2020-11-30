@@ -4,6 +4,8 @@ import time
 import requests
 import board
 import busio
+from PIL import Image, ImageDraw, ImageFont
+import adafruit_ssd1306
 import digitalio
 from adafruit_mcp230xx.mcp23017 import MCP23017
 import os
@@ -23,6 +25,21 @@ pin1.switch_to_output(value=False)
 pin2.switch_to_output(value=False)
 pin1.value = False
 pin2.value = False
+
+#display init stuff
+disp = adafruit_ssd1306.SSD1306_I2C(128, 32, i2c)
+disp.fill(0)
+disp.show()
+width = disp.width
+height = disp.height
+image = Image.new("1", (width, height))
+draw = ImageDraw.Draw(image)
+draw.rectangle((0, 0, width, height), outline=0, fill=0)
+padding = -2
+top = padding
+bottom = height - padding
+x = 0
+font = ImageFont.load_default()
 
 #trigger
 def trigger():
@@ -100,6 +117,12 @@ while True:
             print("internetloop " + str(datetime.now()), file=open("triggerlog.txt", "a+"))
             print("0", file=open("internet-check", "w"))
             trigger()
+            #print naar display
+            draw.rectangle((0, 0, width, height), outline=0, fill=0)
+            draw.text((x, top + 0), "Probleem ", font=font, fill=255)
+            draw.text((x, top + 8), "met", font=font, fill=255)
+            draw.text((x, top + 16), "internetverbinding", font=font, fill=255)
+            draw.text((x, top + 24), "Volgende test: in 10 sec", font=font, fill=255)
             time.sleep(1)
     except requests.ConnectionError:
             errorinternet = 1
