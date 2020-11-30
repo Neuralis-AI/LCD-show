@@ -4,8 +4,6 @@ import time
 import requests
 import board
 import busio
-from PIL import Image, ImageDraw, ImageFont
-import adafruit_ssd1306
 import digitalio
 from adafruit_mcp230xx.mcp23017 import MCP23017
 import os
@@ -18,8 +16,13 @@ from datetime import datetime
 i2c = busio.I2C(board.SCL, board.SDA)
 mcp = MCP23017(i2c, address=0x20)
 pin1 = mcp.get_pin(1) #fysieke output 2
+pin2 = mcp.get_pin(2) #fysieke output 3
+pin4 = mcp.get_pin(4) # input 2
+pin5 = mcp.get_pin(5) # input 3
 pin1.switch_to_output(value=False)
+pin2.switch_to_output(value=False)
 pin1.value = False
+pin2.value = False
 
 #trigger
 def trigger():
@@ -27,29 +30,23 @@ def trigger():
     global i2c
     global mcp
     global pin1
+    global pin2
+    global pin4
+    global pin5
     triggercheck = errordocker + errorcamera + errorinternet
-    print(triggercheck)
+    if pin4 = True or pin5 = True
+        pin2.value = True
+        print("input 2 of 3 getriggered " + str(datetime.now()), file=open("triggerlog.txt", "a+"))
+    else:
+        pin2.value = False
+        
     if  triggercheck != 0:
         pin1.value = True
         print("triggerd")
     else:
         pin1.value = False
-#display init stuff
-disp = adafruit_ssd1306.SSD1306_I2C(128, 32, i2c)
-disp.fill(0)
-disp.show()
-width = disp.width
-height = disp.height
-image = Image.new("1", (width, height))
-draw = ImageDraw.Draw(image)
-draw.rectangle((0, 0, width, height), outline=0, fill=0)
-padding = -2
-top = padding
-bottom = height - padding
-x = 0
-font = ImageFont.load_default()
 
-#errorstates
+        #errorstates
 errordocker = 0
 errorcamera = 0
 errorinternet = 0
@@ -95,12 +92,6 @@ while True:
             print("internetloop " + str(datetime.now()), file=open("triggerlog.txt", "a+"))
             print("0", file=open("internet-check", "w"))
             trigger()
-            #print naar display
-            draw.rectangle((0, 0, width, height), outline=0, fill=0)
-            draw.text((x, top + 0), "Probleem ", font=font, fill=255)
-            draw.text((x, top + 8), "met", font=font, fill=255)
-            draw.text((x, top + 16), "internetverbinding", font=font, fill=255)
-            draw.text((x, top + 24), "Volgende test: in 10 sec", font=font, fill=255)
             time.sleep(1)
     except requests.ConnectionError:
             errorinternet = 1
