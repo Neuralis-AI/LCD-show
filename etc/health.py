@@ -17,8 +17,8 @@ i2c = busio.I2C(board.SCL, board.SDA)
 mcp = MCP23017(i2c, address=0x20)
 pin1 = mcp.get_pin(1) #fysieke output 2
 pin2 = mcp.get_pin(2) #fysieke output 3
-pin4 = mcp.get_pin(4) # input 2
-pin5 = mcp.get_pin(5) # input 3
+pin4 = mcp.get_pin(9) # input 2
+pin5 = mcp.get_pin(10) # input 3
 pin1.switch_to_output(value=False)
 pin2.switch_to_output(value=False)
 pin1.value = False
@@ -44,16 +44,16 @@ def trigger():
                 pin2.value = False
     except:
         if pin4.value or pin5.value:
-            pin2.value = True
+            pin2.switch_to_output(value=True)
             print("input 2 of 3 getriggered " + str(datetime.now()), file=open("triggerlog.txt", "a+"))
         else:
-            pin2.value = False
+            pin2.switch_to_output(value=False)
     if  triggercheck != 0:
-        pin1.value = True
+        pin1.switch_to_output(value=True)
     else:
-        pin1.value = False
+        pin1.switch_to_output(value=False)
 
-        #errorstates
+#errorstates
 errordocker = 0
 errorcamera = 0
 errorinternet = 0
