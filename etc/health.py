@@ -81,15 +81,18 @@ while True:
         dvars = subprocess.check_output("docker exec healthcheck env | grep CAMERA_PING_RESULT", shell=True).decode("utf-8")
     except:
         print("Healthcheck niet up to date?")
-    if "=0" in dvars:
-        errorcamera = 1
-        print("cameraloop " + str(datetime.now()), file=open("triggerlog.txt", "a+"))
-        trigger()
-    elif "=1" in dvars:
-        errorcamera = 0 
-        trigger()
-        #internetcheck 
-        print("started internetcheck")
+    try:
+        if "=0" in dvars:
+            errorcamera = 1
+            print("cameraloop " + str(datetime.now()), file=open("triggerlog.txt", "a+"))
+            trigger()
+        elif "=1" in dvars:
+            errorcamera = 0 
+            trigger()
+            #internetcheck 
+            print("started internetcheck")
+    except:
+        print("Skipping cameracheck")
     try:
         #eventueel al aanpassen naar https?
         response = requests.get("https://www.google.com")
