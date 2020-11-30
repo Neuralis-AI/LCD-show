@@ -17,8 +17,7 @@ rm -f /home/s360box/logs/check.py
 crontab -l > mycron
 #echo new cron into cron file
 echo "@reboot sleep 30; /home/s360box/logs/check.py >/dev/null 2>&1" >> mycron
-echo "* * * * * pgrep -f check.py || nohup /home/s360box/logs/check.py >/dev/null 2>&1"
-
+echo "* * * * * pgrep -f check.py || nohup /home/s360box/logs/check.py >/dev/null 2>&1" >> mycron
 #install new cron file
 crontab mycron
 rm mycron
