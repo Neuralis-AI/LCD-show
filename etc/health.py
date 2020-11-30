@@ -34,8 +34,6 @@ def trigger():
         print("triggerd")
     else:
         pin1.value = False
-        print("untriggerd")
-
 #display init stuff
 disp = adafruit_ssd1306.SSD1306_I2C(128, 32, i2c)
 disp.fill(0)
@@ -67,13 +65,11 @@ while True:
             if row not in stat:
                 errordocker = 1
                 trigger()
-                print("error")
                 time.sleep(1)
                 print("dockerloop " + str(datetime.now()), file=open("triggerlog.txt", "a+"))
             else:
                 errordocker = 0
                 trigger()
-                print("ok")
                 time.sleep(1)
     #cameracheck
     print("started cameracheck")
