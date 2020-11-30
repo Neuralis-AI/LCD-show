@@ -34,11 +34,20 @@ def trigger():
     global pin4
     global pin5
     triggercheck = errordocker + errorcamera + errorinternet
-    if pin4.value or pin5.value:
-        pin2.value = True
-        print("input 2 of 3 getriggered " + str(datetime.now()), file=open("triggerlog.txt", "a+"))
-    else:
-        pin2.value = False  
+    try:
+        sabotagecheck = subprocess.check_output("docker exec healthcheck env | grep SABOTAGE_DETECTION_DISABLED", shell=True).decode("utf-8")    
+        if "=0" in sabotagecheck:
+            if pin4.value or pin5.value:
+                pin2.value = True
+                print("input 2 of 3 getriggered " + str(datetime.now()), file=open("triggerlog.txt", "a+"))
+            else:
+                pin2.value = False
+    except:
+        if pin4.value or pin5.value:
+            pin2.value = True
+            print("input 2 of 3 getriggered " + str(datetime.now()), file=open("triggerlog.txt", "a+"))
+        else:
+            pin2.value = False
     if  triggercheck != 0:
         pin1.value = True
     else:
