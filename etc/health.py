@@ -78,15 +78,15 @@ while True:
     #cameracheck
     print("started cameracheck")
     dvars = f = open("camera-ping-result", "r")
-    if "=0" in dvars:
+    if "0" in dvars:
         errorcamera = 1
         print("cameraloop " + str(datetime.now()), file=open("triggerlog.txt", "a+"))
         trigger()
-    elif "=1" in dvars:
+    elif "1" in dvars:
         errorcamera = 0 
         trigger()
-        #internetcheck 
-        print("started internetcheck")
+    #internetcheck 
+    print("started internetcheck")
     try:
         #eventueel al aanpassen naar https?
         response = requests.get("https://www.google.com")
