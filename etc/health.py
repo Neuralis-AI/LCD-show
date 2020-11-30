@@ -77,10 +77,7 @@ while True:
                 time.sleep(1)
     #cameracheck
     print("started cameracheck")
-    try:
-        dvars = subprocess.check_output("docker exec healthcheck env | grep CAMERA_PING_RESULT", shell=True).decode("utf-8")
-    except:
-        print("Healthcheck niet up to date?")
+    dvars = f = open("camera-ping-result", "r")
     try:
         if "=0" in dvars:
             errorcamera = 1
