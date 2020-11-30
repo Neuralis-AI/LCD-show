@@ -3,6 +3,8 @@
 clear
 
 #get dependencies
+apt install -y python3-pil 
+pip3 install adafruit-circuitpython-ssd1306
 pip3 install adafruit-circuitpython-mcp230xx
 
 #get healthy
