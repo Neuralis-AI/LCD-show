@@ -10,4 +10,4 @@ echo 1 > /home/s360box/logs/internet-check
 chmod 777 /home/s360box/logs/internet-check
 chmod a+x /home/s360box/logs/health.py
 
-print("All done! Now pull the plug daddy... 👁️👅👁️")
+print("All done! Now pull the plug daddy... (♥_♥)")
