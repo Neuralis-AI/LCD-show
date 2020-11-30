@@ -3,8 +3,7 @@
 clear
 
 #get dependencies
-apt install -y python3-pil 
-pip3 install adafruit-circuitpython-ssd1306 adafruit-circuitpython-mcp230xx
+pip3 install adafruit-circuitpython-mcp230xx
 
 #get healthy
 wget https://raw.githubusercontent.com/Neuralis-AI/LCD-show/master/etc/health.py -O "/home/s360box/logs/health.py"
