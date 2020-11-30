@@ -86,10 +86,12 @@ while True:
         response = requests.get("https://www.google.com")
         if "200" in str(response):
             errorinternet = 0
+            print("1", file=open("internet-check", "w"))
             trigger()
         else:
             errorinternet = 1
             print("internetloop " + str(datetime.now()), file=open("triggerlog.txt", "a+"))
+            print("0", file=open("internet-check", "w"))
             trigger()
             #print naar display
             draw.rectangle((0, 0, width, height), outline=0, fill=0)
