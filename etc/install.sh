@@ -14,8 +14,8 @@ rm -f /home/s360box/logs/check.py
 #crontab fiddling stuff
 crontab -l > mycron
 #echo new cron into cron file
-echo "@reboot /home/s360box/logs/health.py >/dev/null 2>&1" >> mycron
-echo "* * * * * pgrep -f health.py || nohup /home/s360box/logs/health.py >/dev/null 2>&1" >> mycron
+echo "@reboot cd /home/s360box/logs && /usr/bin/python3 health.py >/dev/null 2>&1" >> mycron
+echo "* * * * * pgrep -f health.py || nohup cd /home/s360box/logs && /usr/bin/python3 health.py >/dev/null 2>&1" >> mycron
 #install new cron file
 crontab mycron
 rm mycron
@@ -24,13 +24,13 @@ rm mycron
 touch /home/s360box/logs/internet-check
 echo 1 > /home/s360box/logs/internet-check
 touch /home/s360box/logs/camera-ping-result
-touch /home/s360box/logs/triggerlog
+touch /home/s360box/logs/triggerlog.txt
 
 #dominate submissive files
 chmod 777 /home/s360box/logs/internet-check
-chmod a+x /home/s360box/logs/health.py
+chmod 777 /home/s360box/logs/health.py
 chmod 777 /home/s360box/logs/camera-ping-result
-chmod 777 /home/s360box/logs/triggerlog
+chmod 777 /home/s360box/logs/triggerlog.txt
 #clear display
 clear
 
