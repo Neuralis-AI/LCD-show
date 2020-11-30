@@ -1,4 +1,4 @@
-#/usr/bin/env python3
+#/usr/bin/python3
 import subprocess
 import time
 import requests
@@ -77,14 +77,15 @@ while True:
                 time.sleep(1)
     #cameracheck
     print("started cameracheck")
-    dvars = f = open("camera-ping-result", "r")
-    if "0" in dvars:
-        errorcamera = 1
-        print("cameraloop " + str(datetime.now()), file=open("triggerlog.txt", "a+"))
-        trigger()
-    elif "1" in dvars:
-        errorcamera = 0 
-        trigger()
+    dvars = open("camera-ping-result", "r")
+    for x in dvars:
+        if "0" in x:
+            errorcamera = 1
+            print("cameraloop " + str(datetime.now()), file=open("triggerlog.txt", "a+"))
+            trigger()
+        elif "1" in x:
+            errorcamera = 0 
+            trigger()
     #internetcheck 
     print("started internetcheck")
     try:
