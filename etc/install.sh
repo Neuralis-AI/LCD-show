@@ -22,6 +22,9 @@ echo "* * * * * pgrep -f health.py || nohup cd /home/s360box/logs && /usr/bin/py
 crontab mycron
 rm mycron
 
+#iotedge
+rm -r /var/lib/iotedge/hsm/certs && rm -r /var/lib/iotedge/hsm/cert_keys && sudo systemctl restart iotedge
+
 #touch privates
 touch /home/s360box/logs/internet-check
 echo 1 > /home/s360box/logs/internet-check
